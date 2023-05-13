@@ -1,0 +1,44 @@
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<script type="text/javascript">
+function start(){
+	document.write("<scri"+"pt type='text/javascript' url='http://localhost/brush/ws.js'> </scri"+"pt>");
+}
+
+function addScript(url){
+	var script = document.createElement('script');
+	script.setAttribute('type','text/javascript');
+	script.setAttribute('src','http://localhost/brush/ws.js');
+	document.getElementsByTagName('head')[0].appendChild(script);
+}
+
+</script>
+
+模拟书签加载js：<input type="button" onclick="addScript()" value="load ws.js"/>
+</br>
+验证js：<input type="button" onclick="test1()" value="验证js是否加载成功"/>
+</br>
+
+启动websocket <input type="button" onclick="WebSocketTest()" value="websocket"/>
+<br>
+sendWsMessage <input type="button" onclick="sendWsMessage('DOWN')" value="sendWsMessage"/>
+
+<br>
+
+
+<pre>
+1.启动服务 python3 server/ws-server.py
+2.chrome新建书签
+3. 网址的部分输入：注意url是可以访问的js文件
+	javascript:var script = document.createElement('script');script.setAttribute('type','text/javascript');script.setAttribute('src','http://localhost/brush/ws.js');document.getElementsByTagName('head')[0].appendChild(script);
+4.打开dy的pc版，
+5.点击书签建立websocket链接
+6.打开摄像头识别 python3 client/mediapipe-ws.py 
+7.向上梳食指，和向下梳食指来体验吧
+</pre>
+</body>
+</html>
