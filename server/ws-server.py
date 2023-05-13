@@ -27,6 +27,7 @@ async def broadcast(message):
 
 async def main():
     # start a websocket server
+	#print("start websocket server")
     async with websockets.serve(server, "localhost", 8765):
         await asyncio.Future()  # run forever
     asyncio.get_event_loop().run_until_complete(start_server)

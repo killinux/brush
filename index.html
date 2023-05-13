@@ -4,30 +4,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<script type="text/javascript">
-function start(){
-	document.write("<scri"+"pt type='text/javascript' url='http://localhost/brush/ws.js'> </scri"+"pt>");
-}
 
-function addScript(url){
-	var script = document.createElement('script');
-	script.setAttribute('type','text/javascript');
-	script.setAttribute('src','http://localhost/brush/ws.js');
-	document.getElementsByTagName('head')[0].appendChild(script);
-}
-
-</script>
 
 模拟书签加载js：<input type="button" onclick="addScript()" value="load ws.js"/>
 </br>
 验证js：<input type="button" onclick="test1()" value="验证js是否加载成功"/>
 </br>
 
-启动websocket <input type="button" onclick="WebSocketTest()" value="websocket"/>
-<br>
+启动websocket <input type="button" onclick="createWebSocket()" value="websocket"/>
+</br>
 sendWsMessage <input type="button" onclick="sendWsMessage('DOWN')" value="sendWsMessage"/>
-
-<br>
+</br>
+测试点在功能<button id="triggerBtn">触发键盘事件</button>
+</br>
 
 
 <pre>
@@ -40,5 +29,37 @@ sendWsMessage <input type="button" onclick="sendWsMessage('DOWN')" value="sendWs
 6.打开摄像头识别 python3 client/mediapipe-ws.py 
 7.向上梳食指，和向下梳食指来体验吧
 </pre>
+
+<script type="text/javascript">
+function start(){
+	document.write("<scri"+"pt type='text/javascript' url='http://localhost/brush/ws.js'> </scri"+"pt>");
+}
+
+function addScript(url){
+	var script = document.createElement('script');
+	script.setAttribute('type','text/javascript');
+	script.setAttribute('src','http://localhost/brush/ws.js');
+	document.getElementsByTagName('head')[0].appendChild(script);
+}
+//---------点z的功能废弃-----------begin
+document.getElementById('triggerBtn').addEventListener('click', function() {
+  // 创建一个键盘事件
+  const keyboardEvent = new KeyboardEvent('keydown', {
+    key: 'z',
+    code: 'z',
+    bubbles: true,
+    cancelable: true,
+  });
+  console.log("--触发键盘事件---");
+  // 触发键盘事件
+  document.dispatchEvent(keyboardEvent);
+});
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'z') {
+    console.log('z键被触发');
+  }
+});
+//---------点z的功能废弃-----------end
+</script>
 </body>
 </html>

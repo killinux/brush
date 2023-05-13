@@ -68,17 +68,18 @@ while cap.isOpened():
             # 根据角度判断食指的方向，并获取对应的反馈信息
             if (angle > 45 or angle < -45) and y1 > y2:
                 direction = directions["up"]
-                asyncio.get_event_loop().run_until_complete(client(direction))
-                print("----from mediapipe.py->up--->")
+#                asyncio.get_event_loop().run_until_complete(client(direction))
+#                print("----from mediapipe.py->up--->")
             elif (angle > 45 or angle < -45) and y1 < y2:
                 direction = directions["down"]
-                asyncio.get_event_loop().run_until_complete(client(direction))
-                print("----from mediapipe.py->down--->")
+#                asyncio.get_event_loop().run_until_complete(client(direction))
+#                print("----from mediapipe.py->down--->")
             elif (-45 < angle < 45) and x1 < x2:
                 direction = directions["left"]
             else:
                 direction = directions["right"]
-
+            asyncio.get_event_loop().run_until_complete(client(direction))
+            print("----from mediapipe.py direction--->"+direction)
             # 在图像上绘制手部关键点和连线，并显示反馈信息
             mp_drawing.draw_landmarks(image, hand_landmarks, mp_hands.HAND_CONNECTIONS)
             if direction == counts(direction):
